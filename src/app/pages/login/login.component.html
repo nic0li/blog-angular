@@ -1,0 +1,25 @@
+<form>
+  <div>
+    <label for="login">Login</label>
+    <input
+      id="login"
+      type="text"
+      name="login"
+      [(ngModel)]="request.login">
+  </div>
+  <br>
+  <div>
+    <label for="password">Senha</label>
+    <input
+      id="password"
+      type="password"
+      name="password"
+      [(ngModel)]="request.password">
+  </div>
+  <br>
+  <button
+    type="button"
+    (click)="login()">
+    Entrar
+  </button>
+</form>
