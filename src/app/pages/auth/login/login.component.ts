@@ -23,12 +23,11 @@ request: LoginRequest = {
 login(): void {
   this.authService.login(this.request).subscribe({
     next: response => {
-      this.authService.saveToken(response.token);
+      this.authService.saveSession(response);
       this.router.navigate(['/home']);
       console.log('Login realizado com sucesso!');
       console.log(response);
     },
-
     error: error => {
       console.error('Erro ao realizar login');
       console.error(error);
