@@ -1,1 +1,87 @@
-<p>category works!</p>
+<h2>Categories</h2>
+
+<form (ngSubmit)="save()">
+
+  <div class="mb-3">
+
+    <label>Name</label>
+
+    <input
+      class="form-control"
+      name="name"
+      [(ngModel)]="request.name">
+
+  </div>
+
+  <button
+    class="btn btn-success"
+    type="submit">
+
+    {{ editingId ? 'Update' : 'Save' }}
+
+  </button>
+
+  @if (editingId) {
+
+    <button
+      type="button"
+      class="btn btn-secondary ms-2"
+      (click)="cancel()">
+
+      Cancel
+
+    </button>
+
+  }
+
+</form>
+
+<table class="table table-hover mt-5">
+
+    <thead>
+
+        <tr>
+
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @for (category of categories; track category.id) {
+
+            <tr>
+
+                <td>{{ category.name }}</td>
+
+                <td>
+
+                    <button
+                        class="btn btn-warning btn-sm me-2"
+                        (click)="edit(category)">
+
+                        Edit
+
+                    </button>
+
+                    <button
+                        class="btn btn-danger btn-sm"
+                        (click)="delete(category.id)">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>
