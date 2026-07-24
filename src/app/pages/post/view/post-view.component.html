@@ -1,0 +1,90 @@
+<div class="container mt-4">
+  @if (loading) {
+  <div class="text-center">
+    <div class="spinner-border"></div>
+  </div>
+  } @else if (post) {
+  <a routerLink="/home" class="btn btn-outline-secondary mb-4">
+    ← Back
+  </a>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <h2>
+            {{ post.title }}
+          </h2>
+          <p class="text-muted mb-0">
+            By <strong>{{ post.user.name }}</strong>
+          </p>
+        </div>
+        <span class="badge bg-primary">
+          {{ post.category.name }}
+        </span>
+      </div>
+      <hr>
+      <small class="text-muted">
+        Created at
+        {{ post.createdAt | date:'dd/MM/yyyy HH:mm' }}
+      </small>
+      <hr>
+      <p style="white-space: pre-line;">
+        {{ post.content }}
+      </p>
+      <hr>
+      <div class="d-flex gap-2">
+        <button class="btn btn-warning" (click)="editPost()">
+          Edit
+        </button>
+        <button class="btn btn-danger" (click)="deletePost()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-header">
+      <h4 class="mb-0">
+        Comments ({{ post.comments.length }})
+      </h4>
+    </div>
+
+    <div class="card-body">
+      @if (post.comments.length === 0) {
+      <p class="text-muted mb-0">
+        No comments yet.
+      </p>
+      } @else {
+      @for (comment of post.comments; track comment.id) {
+      <div class="mb-3">
+        <strong>
+          {{ comment.user.name }}
+        </strong>
+        <br>
+        <small class="text-muted">
+          {{ comment.createdAt | date:'dd/MM/yyyy HH:mm' }}
+        </small>
+        <p class="mt-2 mb-0">
+          {{ comment.content }}
+        </p>
+      </div>
+      @if (!$last) {
+      <hr>
+      }
+      }
+      }
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-header">
+      Add Comment
+    </div>
+    <div class="card-body">
+      <!-- TODO -->
+      <!-- CommentFormComponent -->
+    </div>
+  </div>
+  }
+</div>

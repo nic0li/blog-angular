@@ -1,6 +1,6 @@
 export interface PostFiltersRequest {
 
-    title: string;
-    category: string;
+    title?: string;
+    category?: string;
 
 }

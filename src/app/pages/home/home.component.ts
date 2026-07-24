@@ -1,26 +1,19 @@
-import { Component, inject } from '@angular/core';
-import { CategoryService } from '../../services/category.service';
+import { Component } from '@angular/core';
+import { PostComponent } from '../post/post.component';
+import { HomeTab } from '../../shared/enums/home-tab.enum';
 
 @Component({
-  selector: 'app-home.component',
-  imports: [],
+  selector: 'app-home',
+  imports: [PostComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+  HomeTab = HomeTab;
+  selectedTab = HomeTab.ALL;
 
-  private readonly categoryService = inject(CategoryService);
-
-  ngOnInit(): void {
-    this.categoryService.findAll().subscribe({
-      next: response => {
-        console.log(response);
-      },
-      error: error => {
-        console.error(error);
-      }
-    });
-
+    changeTab(tab: HomeTab): void {
+    this.selectedTab = tab;
   }
 
 }
