@@ -29,7 +29,7 @@
           <option value="">
             Select a category
           </option>
-          @for (category of categories; track category.id) {
+          @for (category of categories(); track category.id) {
             <option
               [value]="category.name">
               {{ category.name }}
@@ -40,14 +40,14 @@
     </div>
   }
 
-  @if (posts.length === 0) {
+  @if (posts().length === 0) {
     <div class="alert alert-secondary">
       No posts found.
     </div>
 
   } @else {
     <div class="d-flex flex-column gap-4">
-      @for (post of posts; track post.id) {
+      @for (post of posts(); track post.id) {
         <app-post-card
           [post]="post"
           [showActions]="mode === 'mine'"

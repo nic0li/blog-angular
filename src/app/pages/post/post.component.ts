@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoryResponse } from '../../dto/category/category-response';
@@ -23,8 +23,8 @@ export class PostComponent implements OnChanges {
   @Input({ required: true })
   mode!: 'all' | 'mine' | 'category';
 
-  posts: PostViewResponse[] = [];
-  categories: CategoryResponse[] = [];
+  posts = signal<PostViewResponse[]>([]);
+  categories = signal<CategoryResponse[]>([]);
   selectedCategory = '';
 
 ngOnChanges(changes: SimpleChanges): void {
@@ -42,7 +42,7 @@ ngOnChanges(changes: SimpleChanges): void {
         this.loadMyPosts();
         break;
       case 'category':
-        this.posts = [];
+        this.posts.set([]);
         this.loadCategories();
         break;
     }
@@ -50,28 +50,28 @@ ngOnChanges(changes: SimpleChanges): void {
 
 private loadAllPosts(): void {
   this.postService.findAll().subscribe({
-    next: response => this.posts = response,
+    next: response => this.posts.set(response),
     error: console.error
   });
 }
 
 private loadMyPosts(): void {
   this.userService.findAuthenticatedUserPosts().subscribe({
-    next: response => this.posts = response,
+    next: response => this.posts.set(response),
     error: console.error
   });
 }
 
 private loadCategories(): void {
   this.categoryService.findAll().subscribe({
-    next: response => this.categories = response,
+    next: response => this.categories.set(response),
     error: console.error
   });
 }
 
   searchByCategory(): void {
     if (!this.selectedCategory) {
-      this.posts = [];
+      this.posts.set([]);
       return;
     }
     this.postService.findAll({
@@ -79,7 +79,7 @@ private loadCategories(): void {
       category: this.selectedCategory
 
     }).subscribe({
-      next: response => this.posts = response,
+      next: response => this.posts.set(response),
       error: console.error
     });
   }
@@ -96,7 +96,6 @@ private loadCategories(): void {
 
   createPost(): void {
     // TODO
-    // abrir modal
   }
 
 }

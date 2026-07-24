@@ -1,9 +1,9 @@
 <div class="container mt-4">
-  @if (loading) {
+  @if (loading()) {
   <div class="text-center">
     <div class="spinner-border"></div>
   </div>
-  } @else if (post) {
+  } @else if (post()) {
   <a routerLink="/home" class="btn btn-outline-secondary mb-4">
     ← Back
   </a>
@@ -12,24 +12,24 @@
       <div class="d-flex justify-content-between align-items-start">
         <div>
           <h2>
-            {{ post.title }}
+            {{ post()?.title }}
           </h2>
           <p class="text-muted mb-0">
-            By <strong>{{ post.user.name }}</strong>
+            By <strong>{{ post()?.user?.name }}</strong>
           </p>
         </div>
         <span class="badge bg-primary">
-          {{ post.category.name }}
+          {{ post()?.category?.name }}
         </span>
       </div>
       <hr>
       <small class="text-muted">
         Created at
-        {{ post.createdAt | date:'dd/MM/yyyy HH:mm' }}
+        {{ post()?.createdAt | date:'dd/MM/yyyy HH:mm' }}
       </small>
       <hr>
       <p style="white-space: pre-line;">
-        {{ post.content }}
+        {{ post()?.content }}
       </p>
       <hr>
       <div class="d-flex gap-2">
@@ -46,17 +46,17 @@
   <div class="card mt-4">
     <div class="card-header">
       <h4 class="mb-0">
-        Comments ({{ post.comments.length }})
+        Comments ({{ post()?.comments?.length ?? 0 }})
       </h4>
     </div>
 
     <div class="card-body">
-      @if (post.comments.length === 0) {
+      @if ((post()?.comments?.length ?? 0) === 0) {
       <p class="text-muted mb-0">
         No comments yet.
       </p>
       } @else {
-      @for (comment of post.comments; track comment.id) {
+      @for (comment of (post()?.comments ?? []); track comment.id) {
       <div class="mb-3">
         <strong>
           {{ comment.user.name }}
@@ -83,7 +83,6 @@
     </div>
     <div class="card-body">
       <!-- TODO -->
-      <!-- CommentFormComponent -->
     </div>
   </div>
   }
