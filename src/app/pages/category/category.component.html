@@ -1,87 +1,50 @@
-<h2>Categories</h2>
+<h2>Categorias</h2>
 
 <form (ngSubmit)="save()">
-
   <div class="mb-3">
-
-    <label>Name</label>
-
-    <input
-      class="form-control"
-      name="name"
-      [(ngModel)]="request.name">
-
+    <label>Nome</label>
+    <input 
+    id='name' 
+    type='text' 
+    class='form-control' 
+    name='name' 
+    [(ngModel)]="request.name">
   </div>
 
-  <button
-    class="btn btn-success"
-    type="submit">
-
-    {{ editingId ? 'Update' : 'Save' }}
-
+  <button class="btn btn-success" type="submit">
+    {{ editingId ? 'Atualizar' : 'Salvar' }}
   </button>
 
   @if (editingId) {
-
-    <button
-      type="button"
-      class="btn btn-secondary ms-2"
-      (click)="cancel()">
-
-      Cancel
-
-    </button>
-
+  <button type="button" class="btn btn-secondary ms-2" 
+  (click)="cancel()">
+    Cancelar
+  </button>
   }
-
 </form>
 
 <table class="table table-hover mt-5">
-
-    <thead>
-
-        <tr>
-
-            <th>Name</th>
-            <th>Description</th>
-            <th></th>
-
-        </tr>
-
-    </thead>
-
-    <tbody>
-
-        @for (category of categories; track category.id) {
-
-            <tr>
-
-                <td>{{ category.name }}</td>
-
-                <td>
-
-                    <button
-                        class="btn btn-warning btn-sm me-2"
-                        (click)="edit(category)">
-
-                        Edit
-
-                    </button>
-
-                    <button
-                        class="btn btn-danger btn-sm"
-                        (click)="delete(category.id)">
-
-                        Delete
-
-                    </button>
-
-                </td>
-
-            </tr>
-
-        }
-
-    </tbody>
-
+  <thead>
+    <tr>
+      <th>Categoria</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (category of categories; track category.id) {
+    <tr>
+      <td>{{ category.name }}</td>
+      <td>
+        <button class="btn btn-warning btn-sm me-2"
+        (click)="edit(category)">
+          Editar
+        </button>
+        <button class="btn btn-danger btn-sm" 
+        (click)="delete(category.id)">
+          Excluir
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
 </table>

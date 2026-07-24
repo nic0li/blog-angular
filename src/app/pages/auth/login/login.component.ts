@@ -12,27 +12,27 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class LoginComponent {
 
-private readonly router = inject(Router);
-private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
 
-request: LoginRequest = {
-  login: '',
-  password: ''
-}
+  request: LoginRequest = {
+    login: '',
+    password: ''
+  }
 
-login(): void {
-  this.authService.login(this.request).subscribe({
-    next: response => {
-      this.authService.saveSession(response);
-      this.router.navigate(['/home']);
-      console.log('Login realizado com sucesso!');
-      console.log(response);
-    },
-    error: error => {
-      console.error('Erro ao realizar login');
-      console.error(error);
-    }
-  });
-}
+  login(): void {
+    this.authService.login(this.request).subscribe({
+      next: response => {
+        this.authService.saveSession(response);
+        this.router.navigate(['/home']);
+        console.log('Login realizado com sucesso!');
+        console.log(response);
+      },
+      error: error => {
+        console.error('Erro ao realizar login.');
+        console.error(error);
+      }
+    });
+  }
 
 }

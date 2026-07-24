@@ -54,6 +54,10 @@ export class AuthService {
     return this.hasRole(UserRole.ADMIN);
   }
 
+  isUser(): boolean {
+    return this.hasRole(UserRole.USER);
+  }
+
   isAuthenticated(): boolean {
     return this.getToken() !== null;
   }
