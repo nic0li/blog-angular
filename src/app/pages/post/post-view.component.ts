@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { PostViewResponse } from '../../../dto/post/post-view-response';
-import { PostService } from '../../../services/post.service';
+import { PostViewResponse } from '../../dto/post/post-view-response';
+import { PostService } from '../../services/post.service';
 import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({

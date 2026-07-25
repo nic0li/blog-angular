@@ -1,60 +1,58 @@
-<div class="container">
+<div class='container'>
   @if (mode !== 'category') {
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2>
-        @if (mode === 'all') {
-          All Posts
-        } @else {
-          My Posts
-        }
-      </h2>
-      <button
-        class="btn btn-primary"
-        (click)="createPost()">
-        New Post
-      </button>
-    </div>
+  <div class='d-flex justify-content-between align-items-center mb-4'>
+    <h2>
+      @if (mode === 'all') {
+      All Posts
+      } @else {
+      My Posts
+      }
+    </h2>
+    <button class='btn btn-primary'
+      (click)='createPost()'>
+      New Post
+    </button>
+  </div>
   }
 
   @if (mode === 'category') {
-    <div class="card mb-4">
-      <div class="card-body">
-        <label class="form-label">
-          Category
-        </label>
-        <select
-          class="form-select"
-          [(ngModel)]="selectedCategory"
-          (change)="searchByCategory()">
-          <option value="">
-            Select a category
-          </option>
-          @for (category of categories(); track category.id) {
-            <option
-              [value]="category.name">
-              {{ category.name }}
-            </option>
-          }
-        </select>
-      </div>
+  <div class='card mb-4'>
+    <div class='card-body'>
+      <label class='form-label'>
+        Category
+      </label>
+      <select
+        class='form-select'
+        [(ngModel)]='selectedCategory'
+        (change)='searchByCategory()'>
+        <option value=''>
+          Select a category
+        </option>
+        @for (category of categories(); track category.id) {
+        <option [value]='category.name'>
+          {{ category.name }}
+        </option>
+        }
+      </select>
     </div>
+  </div>
   }
 
   @if (posts().length === 0) {
-    <div class="alert alert-secondary">
-      No posts found.
-    </div>
+  <div class='alert alert-secondary'>
+    No posts found.
+  </div>
 
   } @else {
-    <div class="d-flex flex-column gap-4">
-      @for (post of posts(); track post.id) {
-        <app-post-card
-          [post]="post"
-          [showActions]="mode === 'mine'"
-          (delete)="deletePost($event)">
-        </app-post-card>
-      }
-    </div>
+  <div class='d-flex flex-column gap-4'>
+    @for (post of posts(); track post.id) {
+    <app-post-card
+      [post]='post'
+      [showActions]='mode === "mine"'
+      (delete)='deletePost($event)'>
+    </app-post-card>
+    }
+  </div>
   }
 
 </div>

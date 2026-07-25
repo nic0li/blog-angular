@@ -1,5 +1,5 @@
 export interface CommentUpdateRequest {
 
-    content: string;
-    
+  content: string;
+
 }

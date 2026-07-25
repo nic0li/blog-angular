@@ -1,8 +1,8 @@
 export interface UserCreateRequest {
 
-    email: string;
-    password: string;
-    name: string;
-    photo: string;
+  email: string;
+  password: string;
+  name: string;
+  photo: string;
 
 }

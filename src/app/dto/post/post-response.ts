@@ -1,5 +1,5 @@
-import { CategoryResponse } from "../category/category-response";
-import { UserResponse } from "../user/user-response";
+import { CategoryResponse } from '../category/category-response';
+import { UserResponse } from '../user/user-response';
 
 export interface PostResponse {
 

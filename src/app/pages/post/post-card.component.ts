@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PostViewResponse } from '../../../dto/post/post-view-response';
+import { PostViewResponse } from '../../dto/post/post-view-response';
 import { RouterLink } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
 

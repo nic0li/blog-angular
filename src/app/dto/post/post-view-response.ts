@@ -1,6 +1,6 @@
-import { CategoryResponse } from "../category/category-response";
-import { CommentViewResponse } from "../comment/comment-view-response";
-import { UserViewResponse } from "../user/user-view-response";
+import { CategoryResponse } from '../category/category-response';
+import { CommentViewResponse } from '../comment/comment-view-response';
+import { UserViewResponse } from '../user/user-view-response';
 
 export interface PostViewResponse {
 
@@ -14,3 +14,4 @@ export interface PostViewResponse {
   updatedAt: Date;
 
 }
+

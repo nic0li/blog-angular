@@ -1,7 +1,7 @@
 export interface UserUpdateRequest {
 
-    email: string;
-    name: string;
-    photo: string;
+  email: string;
+  name: string;
+  photo: string;
 
 }

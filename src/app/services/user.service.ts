@@ -10,9 +10,9 @@ import { PostViewResponse } from '../dto/post/post-view-response';
 @Service()
 export class UserService {
 
-    private readonly http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
-    private readonly apiUrl = environment.apiUrl + '/users';
+  private readonly apiUrl = environment.apiUrl + '/users';
 
   findAll(): Observable<UserViewResponse[]> {
     return this.http.get<UserViewResponse[]>(this.apiUrl);
@@ -57,5 +57,5 @@ export class UserService {
     return this.http.get<PostViewResponse[]>(
       `${this.apiUrl}/me/posts`);
   }
-    
+
 }

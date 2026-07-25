@@ -1,4 +1,4 @@
-import { UserViewResponse } from "../user/user-view-response";
+import { UserViewResponse } from '../user/user-view-response';
 
 export interface CommentViewResponse {
 

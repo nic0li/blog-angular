@@ -10,9 +10,9 @@ import { CommentViewResponse } from '../dto/comment/comment-view-response';
 @Service()
 export class CommentService {
 
-    private readonly http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
-    private readonly apiUrl = environment.apiUrl + '/comments';
+  private readonly apiUrl = environment.apiUrl + '/comments';
 
   findAll(): Observable<CommentViewResponse[]> {
     return this.http.get<CommentViewResponse[]>(this.apiUrl);

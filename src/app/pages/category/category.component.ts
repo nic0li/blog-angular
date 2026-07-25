@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoryRequest } from '../../dto/category/category-request';
 import { CategoryResponse } from '../../dto/category/category-response';
@@ -14,7 +14,7 @@ export class CategoryComponent implements OnInit {
 
   private readonly categoryService = inject(CategoryService);
 
-  categories: CategoryResponse[] = [];
+  categories = signal<CategoryResponse[]>([]);
 
   request: CategoryRequest = {
     name: ''
@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit {
   editingId: number | null = null;
 
   ngOnInit(): void {
-    this.findAll();
+    this.loadAllCategories();
   }
 
   save(): void {
@@ -46,7 +46,7 @@ export class CategoryComponent implements OnInit {
     }
     this.categoryService.delete(id).subscribe({
       next: () => {
-        this.findAll();
+        this.loadAllCategories();
       },
       error: (error) => {
         console.error(error);
@@ -58,26 +58,20 @@ export class CategoryComponent implements OnInit {
     this.clearForm();
   }
 
-  private findAll(): void {
+  private loadAllCategories(): void {
     this.categoryService.findAll().subscribe({
-      next: (categories) => {
-        this.categories = categories;
-      },
-      error: (error) => {
-        console.error(error);
-      }
+      next: response => this.categories.set(response),
+      error: console.error
     });
   }
 
   private create(): void {
     this.categoryService.create(this.request).subscribe({
       next: () => {
-        this.findAll();
+        this.loadAllCategories();
         this.clearForm();
       },
-      error: (error) => {
-        console.error(error);
-      }
+      error: console.error
     });
   }
 
@@ -87,12 +81,10 @@ export class CategoryComponent implements OnInit {
     }
     this.categoryService.update(this.editingId, this.request).subscribe({
       next: () => {
-        this.findAll();
+        this.loadAllCategories();
         this.clearForm();
       },
-      error: (error) => {
-        console.error(error);
-      }
+      error: console.error
     });
   }
 

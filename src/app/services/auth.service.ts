@@ -20,12 +20,12 @@ export class AuthService {
 
   register(request: UserCreateRequest): Observable<UserResponse> {
     return this.http.post<UserResponse>(
-    `${this.apiUrl}/register`, request);
+      `${this.apiUrl}/register`, request);
   }
 
   login(request: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(
-    `${this.apiUrl}/login`, request);
+      `${this.apiUrl}/login`, request);
   }
 
   saveSession(response: LoginResponse): void {

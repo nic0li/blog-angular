@@ -6,7 +6,7 @@ import { PostViewResponse } from '../../dto/post/post-view-response';
 import { CategoryService } from '../../services/category.service';
 import { PostService } from '../../services/post.service';
 import { UserService } from '../../services/user.service';
-import { PostCardComponent } from './card/post-card.component';
+import { PostCardComponent } from './post-card.component';
 
 @Component({
   selector: 'app-post',
@@ -27,11 +27,11 @@ export class PostComponent implements OnChanges {
   categories = signal<CategoryResponse[]>([]);
   selectedCategory = '';
 
-ngOnChanges(changes: SimpleChanges): void {
-  if (changes['mode']) {
-    this.load();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['mode']) {
+      this.load();
+    }
   }
-}
 
   private load(): void {
     switch (this.mode) {
@@ -43,31 +43,31 @@ ngOnChanges(changes: SimpleChanges): void {
         break;
       case 'category':
         this.posts.set([]);
-        this.loadCategories();
+        this.loadAllCategories();
         break;
     }
   }
 
-private loadAllPosts(): void {
-  this.postService.findAll().subscribe({
-    next: response => this.posts.set(response),
-    error: console.error
-  });
-}
+  private loadAllPosts(): void {
+    this.postService.findAll().subscribe({
+      next: response => this.posts.set(response),
+      error: console.error
+    });
+  }
 
-private loadMyPosts(): void {
-  this.userService.findAuthenticatedUserPosts().subscribe({
-    next: response => this.posts.set(response),
-    error: console.error
-  });
-}
+  private loadMyPosts(): void {
+    this.userService.findAuthenticatedUserPosts().subscribe({
+      next: response => this.posts.set(response),
+      error: console.error
+    });
+  }
 
-private loadCategories(): void {
-  this.categoryService.findAll().subscribe({
-    next: response => this.categories.set(response),
-    error: console.error
-  });
-}
+  private loadAllCategories(): void {
+    this.categoryService.findAll().subscribe({
+      next: response => this.categories.set(response),
+      error: console.error
+    });
+  }
 
   searchByCategory(): void {
     if (!this.selectedCategory) {

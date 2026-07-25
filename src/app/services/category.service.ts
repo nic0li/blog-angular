@@ -8,9 +8,9 @@ import { CategoryResponse } from '../dto/category/category-response';
 @Service()
 export class CategoryService {
 
-    private readonly http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
-    private readonly apiUrl = environment.apiUrl + '/categories';
+  private readonly apiUrl = environment.apiUrl + '/categories';
 
   findAll(name?: string): Observable<CategoryResponse[]> {
     let params = new HttpParams();
@@ -22,12 +22,12 @@ export class CategoryService {
 
   findById(id: number): Observable<CategoryResponse> {
     return this.http.get<CategoryResponse>(
-        `${this.apiUrl}/${id}`);
+      `${this.apiUrl}/${id}`);
   }
 
   create(request: CategoryRequest): Observable<CategoryResponse> {
     return this.http.post<CategoryResponse>(
-        this.apiUrl, request);
+      this.apiUrl, request);
   }
 
   update(id: number, request: CategoryRequest): Observable<CategoryResponse> {
@@ -36,7 +36,8 @@ export class CategoryService {
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(
+      `${this.apiUrl}/${id}`);
   }
 
 }

@@ -1,26 +1,26 @@
-<div class="container mt-4">
-  <ul class="nav nav-tabs mb-4">
-    <li class="nav-item">
-      <button class="nav-link" 
-      [class.active]="selectedTab === HomeTab.ALL" 
-      (click)="changeTab(HomeTab.ALL)">
+<div class='container mt-4'>
+  <ul class='nav nav-tabs mb-4'>
+    <li class='nav-item'>
+      <button class='nav-link'
+        [class.active]='selectedTab === HomeTab.ALL'
+        (click)='changeTab(HomeTab.ALL)'>
         All Posts
       </button>
     </li>
-    <li class="nav-item">
-      <button class="nav-link" 
-      [class.active]="selectedTab === HomeTab.MINE" 
-      (click)="changeTab(HomeTab.MINE)">
+    <li class='nav-item'>
+      <button class='nav-link'
+        [class.active]='selectedTab === HomeTab.MINE'
+        (click)='changeTab(HomeTab.MINE)'>
         My Posts
       </button>
     </li>
-    <li class="nav-item">
-      <button class="nav-link" 
-      [class.active]="selectedTab === HomeTab.CATEGORY"
-      (click)="changeTab(HomeTab.CATEGORY)">
+    <li class='nav-item'>
+      <button class='nav-link'
+        [class.active]='selectedTab === HomeTab.CATEGORY'
+        (click)='changeTab(HomeTab.CATEGORY)'>
         Categories
       </button>
     </li>
   </ul>
-  <app-post [mode]="selectedTab"></app-post>
+  <app-post [mode]='selectedTab'></app-post>
 </div>

@@ -9,10 +9,11 @@ import { HomeTab } from '../../shared/enums/home-tab.enum';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+  
   HomeTab = HomeTab;
   selectedTab = HomeTab.ALL;
 
-    changeTab(tab: HomeTab): void {
+  changeTab(tab: HomeTab): void {
     this.selectedTab = tab;
   }
 

@@ -1,6 +1,6 @@
 export interface CommentCreateRequest {
 
-    content: string;
-    postId: number;
-    
+  content: string;
+  postId: number;
+
 }

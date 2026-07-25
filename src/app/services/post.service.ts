@@ -11,9 +11,9 @@ import { PostViewResponse } from '../dto/post/post-view-response';
 @Service()
 export class PostService {
 
-    private readonly http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
-    private readonly apiUrl = environment.apiUrl + '/posts';
+  private readonly apiUrl = environment.apiUrl + '/posts';
 
   findAll(filters?: PostFiltersRequest): Observable<PostViewResponse[]> {
     let params = new HttpParams();
@@ -48,6 +48,6 @@ export class PostService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(
       `${this.apiUrl}/${id}`);
-  }    
+  }
 
 }
