@@ -86,4 +86,13 @@
     </div>
   </div>
   }
+  
+  @if (showForm()) {
+  <app-post-form
+    [post]="post()"
+    (saved)="postSaved()"
+    (cancelled)="closeForm()">
+  </app-post-form>
+  }
+  
 </div>

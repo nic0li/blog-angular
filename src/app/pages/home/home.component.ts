@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { PostComponent } from '../post/post.component';
+import { PostListComponent } from '../post/post-list.component';
 import { HomeTab } from '../../shared/enums/home-tab.enum';
 
 @Component({
   selector: 'app-home',
-  imports: [PostComponent],
+  imports: [PostListComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

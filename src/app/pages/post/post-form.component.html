@@ -1,0 +1,65 @@
+<div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,.5);">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">
+          @if (editing) {
+          Edit Post
+          } @else {
+          New Post
+          }
+        </h4>
+        <button class="btn-close" (click)="cancel()">
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">
+            Title
+          </label>
+          <input class="form-control" [value]="title()" (input)="title.set($any($event.target).value)">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">
+            Category
+          </label>
+          <select class="form-select" [ngModel]="categoryId()" (ngModelChange)="categoryId.set($event)">
+            <option [ngValue]="0">
+              Select...
+            </option>
+            @for (category of categories(); track category.id) {
+            <option [ngValue]="category.id">
+              {{ category.name }}
+            </option>
+            }
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">
+            Content
+          </label>
+          <textarea class="form-control" rows="10" [value]="content()"
+            (input)="content.set($any($event.target).value)"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cancel()">
+          Cancel
+        </button>
+        <button class="btn btn-primary" [disabled]="saving()" (click)="save()">
+          @if (saving()) {
+          Saving...
+          } @else if (editing) {
+          Save
+          } @else {
+          Create
+          }
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

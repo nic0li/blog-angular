@@ -7,25 +7,31 @@ import { CategoryService } from '../../services/category.service';
 import { PostService } from '../../services/post.service';
 import { UserService } from '../../services/user.service';
 import { PostCardComponent } from './post-card.component';
+import { HomeTab } from '../../shared/enums/home-tab.enum';
+import { PostFormComponent } from './post-form.component';
 
 @Component({
-  selector: 'app-post',
-  imports: [CommonModule, FormsModule, PostCardComponent],
-  templateUrl: './post.component.html',
-  styleUrl: './post.component.css',
+  selector: 'app-post-list',
+  imports: [CommonModule, FormsModule, PostCardComponent, PostFormComponent],
+  templateUrl: './post-list.component.html',
+  styleUrl: './post-list.component.css',
 })
-export class PostComponent implements OnChanges {
+export class PostListComponent implements OnChanges {
 
   private readonly postService = inject(PostService);
   private readonly userService = inject(UserService);
   private readonly categoryService = inject(CategoryService);
 
   @Input({ required: true })
-  mode!: 'all' | 'mine' | 'category';
+  mode!: HomeTab;
 
   posts = signal<PostViewResponse[]>([]);
   categories = signal<CategoryResponse[]>([]);
-  selectedCategory = '';
+  selectedCategory = signal<string>('');
+  HomeTab = HomeTab;
+
+  showForm = signal(false);
+  editingPost = signal<PostViewResponse | null>(null);
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['mode']) {
@@ -35,15 +41,14 @@ export class PostComponent implements OnChanges {
 
   private load(): void {
     switch (this.mode) {
-      case 'all':
+      case HomeTab.ALL:
         this.loadAllPosts();
         break;
-      case 'mine':
-        this.loadMyPosts();
+      case HomeTab.MINE:
+        this.loadAuthenticatedUserPosts();
         break;
-      case 'category':
-        this.posts.set([]);
-        this.loadAllCategories();
+      case HomeTab.CATEGORY:
+        this.loadAllByCategory();
         break;
     }
   }
@@ -55,11 +60,20 @@ export class PostComponent implements OnChanges {
     });
   }
 
-  private loadMyPosts(): void {
+  private loadAuthenticatedUserPosts(): void {
     this.userService.findAuthenticatedUserPosts().subscribe({
       next: response => this.posts.set(response),
       error: console.error
     });
+  }
+
+  private loadAllByCategory(): void {
+    this.loadAllCategories();
+    if (this.selectedCategory()) {
+      this.searchByCategory();
+    } else {
+      this.posts.set([]);
+    }
   }
 
   private loadAllCategories(): void {
@@ -70,18 +84,31 @@ export class PostComponent implements OnChanges {
   }
 
   searchByCategory(): void {
-    if (!this.selectedCategory) {
+    if (!this.selectedCategory()) {
       this.posts.set([]);
       return;
     }
     this.postService.findAll({
       title: '',
-      category: this.selectedCategory
-
+      category: this.selectedCategory()
     }).subscribe({
       next: response => this.posts.set(response),
       error: console.error
     });
+  }
+
+  createPost(): void {
+    this.editingPost.set(null);
+    this.showForm.set(true);
+  }
+
+  editPost(post: PostViewResponse): void {
+    this.editingPost.set(post);
+    this.showForm.set(true);
+  }
+
+  closeForm(): void {
+    this.showForm.set(false);
   }
 
   deletePost(id: number): void {
@@ -94,8 +121,9 @@ export class PostComponent implements OnChanges {
     });
   }
 
-  createPost(): void {
-    // TODO
+  postSaved(): void {
+    this.showForm.set(false);
+    this.load();
   }
 
 }

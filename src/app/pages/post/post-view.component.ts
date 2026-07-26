@@ -3,10 +3,11 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PostViewResponse } from '../../dto/post/post-view-response';
 import { PostService } from '../../services/post.service';
 import { CommonModule, DatePipe } from '@angular/common';
+import { PostFormComponent } from './post-form.component';
 
 @Component({
   selector: 'app-post-view',
-  imports: [CommonModule, RouterLink, DatePipe],
+  imports: [CommonModule, RouterLink, DatePipe, PostFormComponent],
   templateUrl: './post-view.component.html',
   styleUrl: './post-view.component.css',
 })
@@ -18,6 +19,7 @@ export class PostViewComponent implements OnInit {
 
   post = signal<PostViewResponse | null>(null);
   loading = signal(true);
+  showForm = signal(false);
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -39,7 +41,17 @@ export class PostViewComponent implements OnInit {
   }
 
   editPost(): void {
-    // TODO
+    this.showForm.set(true);
+  }
+
+  closeForm(): void {
+    console.log('CLOSE');
+    this.showForm.set(false);
+  }
+
+  postSaved(): void {
+    this.showForm.set(false);
+    this.loadPost(this.post()!.id);
   }
 
   deletePost(): void {

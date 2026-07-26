@@ -18,6 +18,9 @@ export class PostCardComponent {
   showActions = false;
 
   @Output()
+  edit = new EventEmitter<PostViewResponse>();
+
+  @Output()
   delete = new EventEmitter<number>();
 
 }
