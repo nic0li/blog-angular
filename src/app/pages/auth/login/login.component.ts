@@ -25,13 +25,8 @@ export class LoginComponent {
       next: response => {
         this.authService.saveSession(response);
         this.router.navigate(['/home']);
-        console.log('Login realizado com sucesso!');
-        console.log(response);
       },
-      error: error => {
-        console.error('Erro ao realizar login.');
-        console.error(error);
-      }
+      error: console.error
     });
   }
 

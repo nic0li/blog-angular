@@ -6,7 +6,6 @@ import { LoginResponse } from '../dto/auth/login-response';
 import { UserCreateRequest } from '../dto/user/user-create-request';
 import { UserResponse } from '../dto/user/user-response';
 import { Observable } from 'rxjs';
-import { UserRole } from '../shared/enums/user-role.enum';
 
 @Service()
 export class AuthService {
@@ -50,14 +49,6 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  isAdmin(): boolean {
-    return this.hasRole(UserRole.ADMIN);
-  }
-
-  isUser(): boolean {
-    return this.hasRole(UserRole.USER);
-  }
-
   isAuthenticated(): boolean {
     return this.getToken() !== null;
   }
@@ -68,10 +59,6 @@ export class AuthService {
 
   private saveToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
-  }
-
-  private hasRole(role: UserRole): boolean {
-    return this.getUser()?.role === role;
   }
 
 }

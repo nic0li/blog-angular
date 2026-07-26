@@ -45,12 +45,8 @@ export class CategoryComponent implements OnInit {
       return;
     }
     this.categoryService.delete(id).subscribe({
-      next: () => {
-        this.loadAllCategories();
-      },
-      error: (error) => {
-        console.error(error);
-      }
+      next: () => this.loadAllCategories(),
+      error: console.error
     });
   }
 

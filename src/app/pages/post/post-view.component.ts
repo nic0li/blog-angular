@@ -4,6 +4,7 @@ import { PostViewResponse } from '../../dto/post/post-view-response';
 import { PostService } from '../../services/post.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { PostFormComponent } from './post-form.component';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'app-post-view',
@@ -16,6 +17,7 @@ export class PostViewComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly postService = inject(PostService);
+  private readonly authorizationService = inject(AuthorizationService);
 
   post = signal<PostViewResponse | null>(null);
   loading = signal(true);
@@ -33,8 +35,8 @@ export class PostViewComponent implements OnInit {
         this.post.set(response);
         this.loading.set(false);
       },
-      error: error => {
-        console.error(error);
+      error: () => {
+        console.error;
         this.loading.set(false);
       },
     });
@@ -66,6 +68,18 @@ export class PostViewComponent implements OnInit {
       next: () => this.router.navigate(['/home']),
       error: console.error
     });
+  }
+
+  get canEdit(): boolean {
+    const post = this.post();
+    return !!post &&
+      this.authorizationService.canEdit(post.user.id);
+  }
+
+  get canDelete(): boolean {
+    const post = this.post();
+    return !!post &&
+      this.authorizationService.canDelete(post.user.id);
   }
 
 }

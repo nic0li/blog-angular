@@ -90,8 +90,8 @@ export class PostFormComponent implements OnChanges {
           this.saving.set(false);
           this.saved.emit();
         },
-        error: error => {
-          console.error(error);
+        error: () => {
+          console.error;
           this.saving.set(false);
         }
       });
@@ -107,8 +107,8 @@ export class PostFormComponent implements OnChanges {
           this.clearForm();
           this.saved.emit();
         },
-        error: error => {
-          console.error(error);
+        error: () => {
+          console.error;
           this.saving.set(false);
         }
       });

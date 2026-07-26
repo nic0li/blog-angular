@@ -15,7 +15,7 @@
       </span>
     </div>
     <hr>
-    <p class='card-text'>
+    <p class='card-text' style='white-space: pre-line;'>
       {{ post.content }}
     </p>
     <hr>
@@ -34,14 +34,21 @@
         </a>
 
         @if (showActions) {
+
+        @if (canEdit) {
         <button class='btn btn-outline-warning btn-sm'
-          (click)="edit.emit(post)">
+          (click)='edit.emit(post)'>
           Edit
         </button>
+        }
+
+        @if (canDelete) {
         <button class='btn btn-outline-danger btn-sm'
           (click)='delete.emit(post.id)'>
           Delete
         </button>
+        }
+
         }
       </div>
 

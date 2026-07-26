@@ -34,8 +34,8 @@ export class RegisterComponent {
         alert('Usuário cadastrado com sucesso!');
         this.router.navigate(['/login']);
       },
-      error: (error) => {
-        console.error(error);
+      error: () => {
+        console.error;
         alert('Falha ao cadastrar usuário.');
       }
     });

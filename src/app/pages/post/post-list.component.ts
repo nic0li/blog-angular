@@ -39,6 +39,49 @@ export class PostListComponent implements OnChanges {
     }
   }
 
+  searchByCategory(): void {
+    if (!this.selectedCategory()) {
+      this.posts.set([]);
+      return;
+    }
+    this.postService.findAll({
+      title: '',
+      category: this.selectedCategory()
+    }).subscribe({
+      next: response => this.posts.set(response),
+      error: console.error
+    });
+  }
+
+  createPost(): void {
+    this.editingPost.set(null);
+    this.showForm.set(true);
+  }
+
+  editPost(post: PostViewResponse): void {
+    this.editingPost.set(post);
+    this.showForm.set(true);
+  }
+
+  deletePost(id: number): void {
+    if (!confirm('Delete this post?')) {
+      return;
+    }
+    this.postService.delete(id).subscribe({
+      next: () => this.load(),
+      error: console.error
+    });
+  }
+
+  closeForm(): void {
+    this.showForm.set(false);
+  }
+
+  postSaved(): void {
+    this.closeForm();
+    this.load();
+  }
+  
   private load(): void {
     switch (this.mode) {
       case HomeTab.ALL:
@@ -81,49 +124,6 @@ export class PostListComponent implements OnChanges {
       next: response => this.categories.set(response),
       error: console.error
     });
-  }
-
-  searchByCategory(): void {
-    if (!this.selectedCategory()) {
-      this.posts.set([]);
-      return;
-    }
-    this.postService.findAll({
-      title: '',
-      category: this.selectedCategory()
-    }).subscribe({
-      next: response => this.posts.set(response),
-      error: console.error
-    });
-  }
-
-  createPost(): void {
-    this.editingPost.set(null);
-    this.showForm.set(true);
-  }
-
-  editPost(post: PostViewResponse): void {
-    this.editingPost.set(post);
-    this.showForm.set(true);
-  }
-
-  closeForm(): void {
-    this.showForm.set(false);
-  }
-
-  deletePost(id: number): void {
-    if (!confirm('Delete this post?')) {
-      return;
-    }
-    this.postService.delete(id).subscribe({
-      next: () => this.load(),
-      error: console.error
-    });
-  }
-
-  postSaved(): void {
-    this.showForm.set(false);
-    this.load();
   }
 
 }

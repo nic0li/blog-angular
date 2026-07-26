@@ -49,7 +49,7 @@
     <app-post-card
       [post]='post'
       [showActions]='mode === HomeTab.MINE'
-      (edit)="editPost($event)"
+      (edit)='editPost($event)'
       (delete)='deletePost($event)'>
     </app-post-card>
     }
@@ -58,9 +58,9 @@
 
   @if (showForm()) {
   <app-post-form
-    [post]="editingPost()"
-    (saved)="postSaved()"
-    (cancelled)="closeForm()">
+    [post]='editingPost()'
+    (saved)='postSaved()'
+    (cancelled)='closeForm()'>
   </app-post-form>
   }
 

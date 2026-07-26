@@ -8,7 +8,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   const router = inject(Router);
   const authService = inject(AuthService);
-  const token = localStorage.getItem('token');
+  const token = authService.getToken();
 
   const request = token
     ? req.clone({
