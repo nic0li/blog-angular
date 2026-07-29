@@ -2,11 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { PostCreateRequest } from '../dto/post/post-create-request';
-import { PostFiltersRequest } from '../dto/post/post-filters-request';
-import { PostResponse } from '../dto/post/post-response';
-import { PostUpdateRequest } from '../dto/post/post-update-request';
-import { PostViewResponse } from '../dto/post/post-view-response';
+import { PostFiltersRequest } from '../models/post-filters-request';
+import { PostResponse } from '../models/post-response';
+import { PostRequest } from '../models/post-request';
 
 @Service()
 export class PostService {
@@ -15,7 +13,7 @@ export class PostService {
 
   private readonly apiUrl = environment.apiUrl + '/posts';
 
-  findAll(filters?: PostFiltersRequest): Observable<PostViewResponse[]> {
+  findAll(filters?: PostFiltersRequest): Observable<PostResponse[]> {
     let params = new HttpParams();
     if (filters) {
       Object.entries(filters).forEach(([key, value]) => {
@@ -26,21 +24,21 @@ export class PostService {
         }
       });
     }
-    return this.http.get<PostViewResponse[]>(
+    return this.http.get<PostResponse[]>(
       this.apiUrl, { params });
   }
 
-  findById(id: number): Observable<PostViewResponse> {
-    return this.http.get<PostViewResponse>(
+  findById(id: number): Observable<PostResponse> {
+    return this.http.get<PostResponse>(
       `${this.apiUrl}/${id}`);
   }
 
-  create(request: PostCreateRequest): Observable<PostResponse> {
+  create(request: PostRequest): Observable<PostResponse> {
     return this.http.post<PostResponse>(
       this.apiUrl, request);
   }
 
-  update(id: number, request: PostUpdateRequest): Observable<PostResponse> {
+  update(id: number, request: PostRequest): Observable<PostResponse> {
     return this.http.patch<PostResponse>(
       `${this.apiUrl}/${id}`, request);
   }

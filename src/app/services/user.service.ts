@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { UserResponse } from '../dto/user/user-response';
-import { UserUpdateRequest } from '../dto/user/user-update-request';
-import { UserViewResponse } from '../dto/user/user-view-response';
-import { PostViewResponse } from '../dto/post/post-view-response';
+import { UserResponse } from '../models/user-response';
+import { UserUpdateRequest } from '../models/user-update-request';
+import { UserViewResponse } from '../models/user-view-response';
+import { PostResponse } from '../models/post-response';
 
 @Service()
 export class UserService {
@@ -48,13 +48,13 @@ export class UserService {
       `${this.apiUrl}/me`);
   }
 
-  findPostsByUser(id: number): Observable<PostViewResponse[]> {
-    return this.http.get<PostViewResponse[]>(
+  findPostsByUser(id: number): Observable<PostResponse[]> {
+    return this.http.get<PostResponse[]>(
       `${this.apiUrl}/${id}/posts`);
   }
 
-  findAuthenticatedUserPosts(): Observable<PostViewResponse[]> {
-    return this.http.get<PostViewResponse[]>(
+  findAuthenticatedUserPosts(): Observable<PostResponse[]> {
+    return this.http.get<PostResponse[]>(
       `${this.apiUrl}/me/posts`);
   }
 

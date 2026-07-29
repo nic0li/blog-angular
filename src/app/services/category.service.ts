@@ -2,8 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { CategoryRequest } from '../dto/category/category-request';
-import { CategoryResponse } from '../dto/category/category-response';
+import { CategoryRequest } from '../models/category-request';
+import { CategoryResponse } from '../models/category-response';
 
 @Service()
 export class CategoryService {

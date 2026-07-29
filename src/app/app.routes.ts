@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/auth/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
-import { authGuard } from './guards/auth.guard';
-import { RegisterComponent } from './pages/auth/register/register.component';
+import { authenticationGuard } from './core/guards/authentication.guard';
+import { RegisterComponent } from './pages/register/register.component';
 import { UserComponent } from './pages/user/user.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { adminGuard } from './guards/admin.guard';
-import { PostViewComponent } from './pages/post/post-view.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { adminGuard } from './core/guards/admin.guard';
+import { PostComponent } from './pages/post/post.component';
 
 export const routes: Routes = [
 
@@ -17,22 +17,22 @@ export const routes: Routes = [
 
   {
     path: 'home', component: HomeComponent,
-    canActivate: [authGuard]
+    canActivate: [authenticationGuard]
   },
 
   {
-    path: 'categories', component: CategoryComponent,
-    canActivate: [authGuard, adminGuard]
+    path: 'categories', component: CategoriesComponent,
+    canActivate: [authenticationGuard, adminGuard]
   },
 
   {
-    path: 'posts/:id', component: PostViewComponent,
-    canActivate: [authGuard]
+    path: 'post/:id', component: PostComponent,
+    canActivate: [authenticationGuard]
   },
 
   {
-    path: 'users/:id', component: UserComponent,
-    canActivate: [authGuard]
+    path: 'user/:id', component: UserComponent,
+    canActivate: [authenticationGuard]
   },
 
 ];

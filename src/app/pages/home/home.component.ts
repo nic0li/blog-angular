@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PostListComponent } from '../post/post-list.component';
+import { PostListComponent } from '../../components/post/post-list.component';
 import { HomeTab } from '../../shared/enums/home-tab.enum';
 
 @Component({
@@ -9,7 +9,7 @@ import { HomeTab } from '../../shared/enums/home-tab.enum';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  
+
   HomeTab = HomeTab;
   selectedTab = HomeTab.ALL;
 
