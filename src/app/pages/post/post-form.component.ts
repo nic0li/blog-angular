@@ -29,6 +29,7 @@ export class PostFormComponent implements OnChanges {
   cancelled = new EventEmitter<void>();
 
   categories = signal<CategoryResponse[]>([]);
+  
   saving = signal(false);
 
   title = signal('');
@@ -58,7 +59,6 @@ export class PostFormComponent implements OnChanges {
         this.categories.set(response);
         if (this.post) {
           this.categoryId.set(this.post.category.id);
-          console.log('Categoria do post:', this.post.category.id);
         }
       },
       error: console.error
@@ -116,7 +116,6 @@ export class PostFormComponent implements OnChanges {
   }
 
   cancel(): void {
-    console.log('CANCEL CLICK');
     this.clearForm();
     this.cancelled.emit();
   }

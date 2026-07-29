@@ -56,31 +56,25 @@
         Comments ({{ post()?.comments?.length ?? 0 }})
       </h4>
     </div>
-
+  
     <div class='card-body'>
-      @if ((post()?.comments?.length ?? 0) === 0) {
+    @if ((post()?.comments?.length ?? 0) === 0) {
       <p class='text-muted mb-0'>
         No comments yet.
       </p>
-      } @else {
+    } @else {
       @for (comment of (post()?.comments ?? []); track comment.id) {
-      <div class='mb-3'>
-        <strong>
-          {{ comment.user.name }}
-        </strong>
-        <br>
-        <small class='text-muted'>
-          {{ comment.createdAt | date:'dd/MM/yyyy HH:mm' }}
-        </small>
-        <p class='mt-2 mb-0'>
-          {{ comment.content }}
-        </p>
-      </div>
-      @if (!$last) {
-      <hr>
+        <app-comment-card
+          [comment]='comment'
+          [postId]='post()!.id'
+          (updated)='commentSaved()'
+          (deleted)='commentDeleted()'>
+        </app-comment-card>
+        @if (!$last) {
+          <hr>
+        }
       }
-      }
-      }
+    }
     </div>
   </div>
 
@@ -89,7 +83,10 @@
       Add Comment
     </div>
     <div class='card-body'>
-      <!-- TODO -->
+      <app-comment-form
+        [postId]='post()!.id'
+        (saved)='commentSaved()'>
+      </app-comment-form>
     </div>
   </div>
   }

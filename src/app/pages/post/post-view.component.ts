@@ -5,10 +5,12 @@ import { PostService } from '../../services/post.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { PostFormComponent } from './post-form.component';
 import { AuthorizationService } from '../../services/authorization.service';
+import { CommentCardComponent } from '../comment/comment-card.component';
+import { CommentFormComponent } from '../comment/comment-form.component';
 
 @Component({
   selector: 'app-post-view',
-  imports: [CommonModule, RouterLink, DatePipe, PostFormComponent],
+  imports: [CommonModule, RouterLink, DatePipe, PostFormComponent, CommentCardComponent, CommentFormComponent],
   templateUrl: './post-view.component.html',
   styleUrl: './post-view.component.css',
 })
@@ -47,7 +49,6 @@ export class PostViewComponent implements OnInit {
   }
 
   closeForm(): void {
-    console.log('CLOSE');
     this.showForm.set(false);
   }
 
@@ -80,6 +81,14 @@ export class PostViewComponent implements OnInit {
     const post = this.post();
     return !!post &&
       this.authorizationService.canDelete(post.user.id);
+  }
+
+  commentSaved(): void {
+    this.loadPost(this.post()!.id);
+  }
+
+  commentDeleted(): void {
+    this.loadPost(this.post()!.id);
   }
 
 }
