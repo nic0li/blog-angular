@@ -1,0 +1,21 @@
+<nav class="navbar">
+    <a routerLink="/home" class="brand">
+        Blog
+    </a>
+    <div class="links">
+        <a routerLink="/home">
+            Home
+        </a>
+        @if (isAdmin) {
+            <a routerLink="/categories">
+                Categories
+            </a>
+        }
+        <a [routerLink]="['/users', user?.id]">
+            Hello, {{ user?.name }}
+        </a>
+        <button type="button" (click)="logout()">
+            Logout
+        </button>
+    </div>
+</nav>

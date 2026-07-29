@@ -6,11 +6,14 @@ import { LoginResponse } from '../models/login-response';
 import { RegisterRequest } from '../models/register-request';
 import { UserResponse } from '../models/user-response';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Service()
 export class AuthenticationService {
 
   private readonly http = inject(HttpClient);
+
+  private readonly router = inject(Router);
 
   private readonly apiUrl = environment.apiUrl + '/auth';
 
@@ -35,6 +38,11 @@ export class AuthenticationService {
   clearSession(): void {
     localStorage.removeItem(this.USER_KEY);
     localStorage.removeItem(this.TOKEN_KEY);
+  }
+
+  logout(): void {
+    this.clearSession();
+    this.router.navigate(['/login']);
   }
 
   getUser(): UserResponse | null {
