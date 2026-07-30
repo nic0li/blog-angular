@@ -1,11 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, OnChanges, Output, signal, SimpleChanges } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { CategoryResponse } from '../../models/category-response';
 import { PostRequest } from '../../models/post-request';
 import { PostResponse } from '../../models/post-response';
 import { CategoryService } from '../../services/category.service';
 import { PostService } from '../../services/post.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-post-form',
@@ -89,10 +90,7 @@ export class PostFormComponent implements OnChanges {
           this.saving.set(false);
           this.saved.emit();
         },
-        error: () => {
-          console.error;
-          this.saving.set(false);
-        }
+        error: () => this.saving.set(false)
       });
     } else {
       const request: PostRequest = {
@@ -106,10 +104,7 @@ export class PostFormComponent implements OnChanges {
           this.clearForm();
           this.saved.emit();
         },
-        error: () => {
-          console.error;
-          this.saving.set(false);
-        }
+        error: () => this.saving.set(false)
       });
     }
   }

@@ -1,12 +1,13 @@
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { PostResponse } from '../../models/post-response';
-import { PostService } from '../../services/post.service';
-import { CommonModule, DatePipe } from '@angular/common';
-import { PostFormComponent } from '../../components/post/post-form.component';
-import { AuthorizationService } from '../../services/authorization.service';
+
 import { CommentCardComponent } from '../../components/comment/comment-card.component';
 import { CommentFormComponent } from '../../components/comment/comment-form.component';
+import { PostFormComponent } from '../../components/post/post-form.component';
+import { PostResponse } from '../../models/post-response';
+import { AuthorizationService } from '../../services/authorization.service';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -37,10 +38,7 @@ export class PostComponent implements OnInit {
         this.post.set(response);
         this.loading.set(false);
       },
-      error: () => {
-        console.error;
-        this.loading.set(false);
-      },
+      error: () => this.loading.set(false)
     });
   }
 

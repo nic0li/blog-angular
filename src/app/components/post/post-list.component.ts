@@ -1,13 +1,14 @@
-import { Component, inject, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { CategoryResponse } from '../../models/category-response';
 import { PostResponse } from '../../models/post-response';
 import { CategoryService } from '../../services/category.service';
 import { PostService } from '../../services/post.service';
 import { UserService } from '../../services/user.service';
-import { PostCardComponent } from './post-card.component';
 import { HomeTab } from '../../shared/enums/home-tab.enum';
+import { PostCardComponent } from './post-card.component';
 import { PostFormComponent } from './post-form.component';
 
 @Component({

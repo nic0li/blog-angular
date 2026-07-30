@@ -1,15 +1,16 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
+
 import { authenticatedGuard } from './core/guards/authenticated.guard';
+import { authorizationGuard } from './core/guards/authorization.guard';
+import { rootRedirectGuard } from './core/guards/root-redirect.guard';
+import { unauthenticatedGuard } from './core/guards/unauthenticated.guard';
+import { MainComponent } from './layout/main/main.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { PostComponent } from './pages/post/post.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserComponent } from './pages/user/user.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
-import { authorizationGuard } from './core/guards/authorization.guard';
-import { PostComponent } from './pages/post/post.component';
-import { unauthenticatedGuard } from './core/guards/unauthenticated.guard';
-import { rootRedirectGuard } from './core/guards/root-redirect.guard';
-import { MainComponent } from './layout/main/main.component';
 
 export const routes: Routes = [
 

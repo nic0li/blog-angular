@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
 import { CommentRequest } from '../models/comment-request';
 import { CommentResponse } from '../models/comment-response';
 

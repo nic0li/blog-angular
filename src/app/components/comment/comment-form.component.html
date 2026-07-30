@@ -10,7 +10,7 @@
 
 <div class='d-flex gap-2'>
   <button
-    class='btn btn-primary'
+    class='btn btn-outline-primary'
     [disabled]='saving()'
     (click)='save()'>
     @if (saving()) {
@@ -24,7 +24,7 @@
 
   @if (editing) {
     <button
-      class='btn btn-secondary'
+      class='btn btn-outline-secondary'
       (click)='cancel()'>
       Cancel
     </button>

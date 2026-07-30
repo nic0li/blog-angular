@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
+import { PostResponse } from '../models/post-response';
 import { UserResponse } from '../models/user-response';
 import { UserUpdateRequest } from '../models/user-update-request';
 import { UserViewResponse } from '../models/user-view-response';
-import { PostResponse } from '../models/post-response';
 
 @Service()
 export class UserService {

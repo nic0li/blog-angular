@@ -5,7 +5,7 @@
       <div class='row d-flex justify-content-center'>
         <div class='col-md-6'>
 
-          <h1 class='text-center mb-3'>Entrar</h1>
+          <h1 class='text-center mb-3'>Login</h1>
 
           <div class='form-group'>
             <label for='login'>E-mail</label>
@@ -14,30 +14,30 @@
               type='text'
               class='form-control'
               name='login'
-              placeholder='Seu e-mail'
+              placeholder=''
               [(ngModel)]='request.login'>
           </div>
 
           <div class='form-group'>
-            <label for='password'>Senha</label>
+            <label for='password'>Password</label>
             <input
               id='password'
               type='password'
               class='form-control'
               name='password'
-              placeholder='Sua senha'
+              placeholder=''
               [(ngModel)]='request.password'>
           </div>
 
           <div class='d-flex justify-content-center'>
             <button type='submit'
-              class='btn btn-success'
-              (click)='login()'>Entrar</button>
+              class='btn btn-outline-success'
+              (click)='login()'>Login</button>
           </div>
           <hr class='mt-5 mb-5'>
           <p class='text-center'>
-            Não tem uma conta?
-            <a routerLink='/register'>Cadastre-se</a>
+            Don't have an account?
+            <a routerLink='/register'>Register</a>
           </p>
 
         </div>

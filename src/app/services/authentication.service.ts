@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { environment } from '../../environments/environment';
 import { LoginRequest } from '../models/login-request';
 import { LoginResponse } from '../models/login-response';
 import { RegisterRequest } from '../models/register-request';
 import { UserResponse } from '../models/user-response';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Service()
 export class AuthenticationService {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { PostListComponent } from '../../components/post/post-list.component';
 import { HomeTab } from '../../shared/enums/home-tab.enum';
 

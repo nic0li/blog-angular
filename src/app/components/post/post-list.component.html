@@ -8,7 +8,7 @@
       My Posts
       }
     </h2>
-    <button class='btn btn-primary'
+    <button class='btn btn-outline-primary'
       (click)='createPost()'>
       New Post
     </button>
@@ -18,10 +18,11 @@
   @if (mode === HomeTab.CATEGORY) {
   <div class='card mb-4'>
     <div class='card-body'>
-      <label class='form-label'>
+      <label class='form-label' for='category'>
         Category
       </label>
       <select
+        id='category'
         class='form-select'
         [(ngModel)]='selectedCategory'
         (change)='searchByCategory()'>

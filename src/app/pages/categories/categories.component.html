@@ -1,8 +1,8 @@
-<h2>Categorias</h2>
+<h2>Categories</h2>
 
 <form (ngSubmit)='save()'>
   <div class='mb-3'>
-    <label>Nome</label>
+    <label for='name'>Name</label>
     <input
       id='name'
       type='text'
@@ -11,14 +11,14 @@
       [(ngModel)]='request.name'>
   </div>
 
-  <button class='btn btn-success' type='submit'>
-    {{ editingId ? 'Atualizar' : 'Salvar' }}
+  <button class='btn btn-outline-success' type='submit'>
+    {{ editingId ? 'Update' : 'Save' }}
   </button>
 
   @if (editingId) {
-  <button type='button' class='btn btn-secondary ms-2'
+  <button type='button' class='btn btn-outline-secondary ms-2'
     (click)='cancel()'>
-    Cancelar
+    Cancel
   </button>
   }
 </form>
@@ -26,7 +26,7 @@
 <table class='table table-hover mt-5'>
   <thead>
     <tr>
-      <th>Categoria</th>
+      <th>Category</th>
       <th></th>
     </tr>
   </thead>
@@ -35,13 +35,13 @@
     <tr>
       <td>{{ category.name }}</td>
       <td>
-        <button class='btn btn-warning btn-sm me-2'
+        <button class='btn btn-outline-warning btn-sm me-2'
           (click)='edit(category)'>
-          Editar
+          Edit
         </button>
-        <button class='btn btn-danger btn-sm' 
+        <button class='btn btn-outline-danger btn-sm' 
           (click)='delete(category.id)'>
-          Excluir
+          Delete
         </button>
       </td>
     </tr>

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+
 import { RegisterRequest } from '../../models/register-request';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -21,7 +22,7 @@ export class RegisterComponent {
     name: '',
     photo: ''
   };
-  confirmPassword: string = '';
+  confirmPassword = '';
 
   register(): void {
     if (this.request.password !== this.confirmPassword) {
@@ -34,10 +35,7 @@ export class RegisterComponent {
         alert('Usuário cadastrado com sucesso!');
         this.router.navigate(['/login']);
       },
-      error: () => {
-        console.error;
-        alert('Falha ao cadastrar usuário.');
-      }
+      error: () => alert('Falha ao cadastrar usuário.')
     });
 
   }

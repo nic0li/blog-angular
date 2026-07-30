@@ -1,9 +1,10 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
-import { CommentFormComponent } from './comment-form.component';
+
 import { CommentResponse } from '../../models/comment-response';
 import { AuthorizationService } from '../../services/authorization.service';
 import { CommentService } from '../../services/comment.service';
+import { CommentFormComponent } from './comment-form.component';
 
 @Component({
   selector: 'app-comment-card',

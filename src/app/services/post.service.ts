@@ -1,10 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
 import { PostFiltersRequest } from '../models/post-filters-request';
-import { PostResponse } from '../models/post-response';
 import { PostRequest } from '../models/post-request';
+import { PostResponse } from '../models/post-response';
 
 @Service()
 export class PostService {

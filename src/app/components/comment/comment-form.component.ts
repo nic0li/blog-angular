@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output, signal, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges,Output, signal, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommentService } from '../../services/comment.service';
-import { CommentResponse } from '../../models/comment-response';
+
 import { CommentRequest } from '../../models/comment-request';
+import { CommentResponse } from '../../models/comment-response';
+import { CommentService } from '../../services/comment.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -11,7 +12,7 @@ import { CommentRequest } from '../../models/comment-request';
   templateUrl: './comment-form.component.html',
   styleUrl: './comment-form.component.css',
 })
-export class CommentFormComponent {
+export class CommentFormComponent implements OnChanges {
 
   private readonly commentService = inject(CommentService);
 
@@ -60,10 +61,7 @@ export class CommentFormComponent {
           this.saving.set(false);
           this.saved.emit();
         },
-        error: () => {
-          console.error;
-          this.saving.set(false);
-        }
+        error: () => this.saving.set(false)
       });
     } else {
       const request: CommentRequest = {
@@ -75,10 +73,7 @@ export class CommentFormComponent {
           this.clearForm();
           this.saved.emit();
         },
-        error: () => {
-          console.error;
-          this.saving.set(false);
-        }
+        error: () => this.saving.set(false)
       });
     }
   }

@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { CategoryRequest } from '../../models/category-request';
 import { CategoryResponse } from '../../models/category-response';
 import { CategoryService } from '../../services/category.service';
@@ -41,7 +42,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   delete(id: number): void {
-    if (!confirm('Tem certeza que deseja excluir esta categoria?')) {
+    if (!confirm('Delete this category?')) {
       return;
     }
     this.categoryService.delete(id).subscribe({
