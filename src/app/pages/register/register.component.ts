@@ -26,16 +26,16 @@ export class RegisterComponent {
 
   register(): void {
     if (this.request.password !== this.confirmPassword) {
-      alert('Senhas não coincidem.');
+      alert('Passwords do not match.');
       return;
     }
 
     this.authenticationService.register(this.request).subscribe({
       next: () => {
-        alert('Usuário cadastrado com sucesso!');
+        alert('Registration successful.');
         this.router.navigate(['/login']);
       },
-      error: () => alert('Falha ao cadastrar usuário.')
+      error: () => alert('Registration failed.')
     });
 
   }

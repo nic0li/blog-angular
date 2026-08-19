@@ -21,7 +21,8 @@ export class AuthorizationService {
   }
 
   private hasRole(role: UserRole): boolean {
-    return this.authenticationService.getUser()?.role === role;
+    const userRole = this.authenticationService.getUser()?.role;
+    return userRole?.trim().toUpperCase() === role.toUpperCase();
   }
 
 }
