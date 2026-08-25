@@ -1,11 +1,13 @@
-import { UserViewResponse } from './user-view-response';
+import { PostResponse } from './post-response';
+import { UserProfileResponse } from './user-profile-response';
 
 export interface CommentResponse {
 
   id: number;
   content: string;
-  user: UserViewResponse;
   createdAt: Date;
   updatedAt: Date;
+  user: UserProfileResponse;
+  post: PostResponse
 
 }

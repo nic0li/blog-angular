@@ -1,16 +1,16 @@
 import { CategoryResponse } from './category-response';
 import { CommentResponse } from './comment-response';
-import { UserViewResponse } from './user-view-response';
+import { UserProfileResponse } from './user-profile-response';
 
 export interface PostResponse {
 
   id: number;
   title: string;
   content: string;
-  category: CategoryResponse;
-  user: UserViewResponse;
-  comments: CommentResponse[];
   createdAt: Date;
   updatedAt: Date;
+  category: CategoryResponse;
+  user: UserProfileResponse;
+  comments: CommentResponse[];
 
 }

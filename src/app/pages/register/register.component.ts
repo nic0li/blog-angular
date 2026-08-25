@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { RegisterRequest } from '../../models/register-request';
+import { UserCreateRequest } from '../../models/user-create-request';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -16,11 +16,10 @@ export class RegisterComponent {
   private readonly router = inject(Router);
   private readonly authenticationService = inject(AuthenticationService);
 
-  request: RegisterRequest = {
+  request: UserCreateRequest = {
     email: '',
     password: '',
-    name: '',
-    photo: ''
+    name: ''
   };
   confirmPassword = '';
 

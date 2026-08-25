@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { LoginRequest } from '../../models/login-request';
+import { AuthenticationRequest } from '../../models/authentication-request';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginComponent {
   private readonly router = inject(Router);
   private readonly authenticationService = inject(AuthenticationService);
 
-  request: LoginRequest = {
+  request: AuthenticationRequest = {
     login: '',
     password: ''
   }

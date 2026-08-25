@@ -6,10 +6,10 @@ import { CategoryResponse } from '../../models/category-response';
 import { PostResponse } from '../../models/post-response';
 import { CategoryService } from '../../services/category.service';
 import { PostService } from '../../services/post.service';
-import { UserService } from '../../services/user.service';
 import { HomeTab } from '../../shared/enums/home-tab.enum';
 import { PostCardComponent } from './post-card.component';
 import { PostFormComponent } from './post-form.component';
+import { AuthenticatedUserService } from '../../services/authenticated-user.service';
 
 @Component({
   selector: 'app-post-list',
@@ -20,7 +20,7 @@ import { PostFormComponent } from './post-form.component';
 export class PostListComponent implements OnChanges {
 
   private readonly postService = inject(PostService);
-  private readonly userService = inject(UserService);
+  private readonly authenticatedUserService = inject(AuthenticatedUserService);
   private readonly categoryService = inject(CategoryService);
 
   @Input({ required: true })
@@ -105,7 +105,7 @@ export class PostListComponent implements OnChanges {
   }
 
   private loadAuthenticatedUserPosts(): void {
-    this.userService.findAuthenticatedUserPosts().subscribe({
+    this.authenticatedUserService.findAllPosts().subscribe({
       next: response => this.posts.set(response),
       error: console.error
     });

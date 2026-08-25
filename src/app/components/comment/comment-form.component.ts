@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommentRequest } from '../../models/comment-request';
 import { CommentResponse } from '../../models/comment-response';
 import { CommentService } from '../../services/comment.service';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -15,6 +16,8 @@ import { CommentService } from '../../services/comment.service';
 export class CommentFormComponent implements OnChanges {
 
   private readonly commentService = inject(CommentService);
+  private readonly postService = inject(PostService);
+
 
   @Input({ required: true })
   postId!: number;
@@ -67,7 +70,7 @@ export class CommentFormComponent implements OnChanges {
       const request: CommentRequest = {
         content: this.content().trim()
       };
-      this.commentService.create(this.postId, request).subscribe({
+      this.postService.createComment(this.postId, request).subscribe({
         next: () => {
           this.saving.set(false);
           this.clearForm();

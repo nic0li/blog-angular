@@ -6,6 +6,7 @@ export interface UserResponse {
   name: string;
   email: string;
   photo: string;
+  bio: string;
   role: UserRole;
 
 }

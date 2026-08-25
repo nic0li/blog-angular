@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment';
 import { PostFiltersRequest } from '../models/post-filters-request';
 import { PostRequest } from '../models/post-request';
 import { PostResponse } from '../models/post-response';
+import { CommentRequest } from '../models/comment-request';
+import { CommentResponse } from '../models/comment-response';
 
 @Service()
 export class PostService {
@@ -47,6 +49,11 @@ export class PostService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(
       `${this.apiUrl}/${id}`);
+  }
+
+  createComment(postId: number, request: CommentRequest): Observable<CommentResponse> {
+    return this.http.post<CommentResponse>(
+      `${this.apiUrl}/${postId}/comments`, request);
   }
 
 }

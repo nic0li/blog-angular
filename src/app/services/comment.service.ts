@@ -13,20 +13,6 @@ export class CommentService {
 
   private readonly apiUrl = environment.apiUrl + '/comments';
 
-  findAll(): Observable<CommentResponse[]> {
-    return this.http.get<CommentResponse[]>(this.apiUrl);
-  }
-
-  findById(id: number): Observable<CommentResponse> {
-    return this.http.get<CommentResponse>(
-      `${this.apiUrl}/${id}`);
-  }
-
-  create(postId: number, request: CommentRequest): Observable<CommentResponse> {
-    return this.http.post<CommentResponse>(
-      this.apiUrl, { ...request, postId });
-  }
-
   update(id: number, request: CommentRequest): Observable<CommentResponse> {
     return this.http.patch<CommentResponse>(
       `${this.apiUrl}/${id}`, request);
